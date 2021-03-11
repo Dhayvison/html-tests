@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    div.a {
+      font-size: 40px;
+      width: 150px;
+      height: 80px;
+      background-color: yellow;
+      transition: all 0.3s;
+    }
+
+    div.a:hover {
+      transform: scale(1.02);
+    }
+
+
+    div.b {
+      font-size: 40px;
+      width: 150px;
+      height: 80px;
+      transform: scale(0.9);
+      background-color: yellow;
+      transition: all 0.3s;
+    }
+
+    div.b:hover {
+      transform: scale(1);
+    }
+
+    div.c {
+      font-size: 40px;
+      width: 150px;
+      height: 80px;
+      will-change: transform;
+      transform: perspective(0) translateZ(0) scale(0.9);
+      backface-visibility: hidden;
+      background-color: yellow;
+      transition: all 0.3s;
+    }
+
+    div.c:hover {
+      transform: scale(1);
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Scale transform without blur</h1>
+  <h2>Wrongest way</h2>
+  <div class="a">Hello World!</div>
+  <br>
+
+  <h2>With</h2>
+  <div class="b">Hello World!</div>
+  <br>
+
+  <h2>Without</h2>
+  <div class="c">Hello World!</div>
+  <br>
+
+</body>
+
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <style>
+    body {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    form * {
+      display: block;
+      margin: 10px auto;
+      font-size: 2rem;
+      width: 100%;
+    }
+
+    b {
+      color: red;
+      font-size: medium;
+    }
+  </style>
+
+  <form onsubmit="validaCampos(event)">
+    <label for="email">E-mail</label>
+    <input type="email" id="email" name='email' onkeydown="limparErro()">
+
+    <label for="password">Senha:</label>
+    <input type="password" id="password" name='password' onkeydown="limparErro()">
+
+    <b id="erro"></b>
+
+    <input type="submit" value="Entrar">
+  </form>
+
+  <script>
+    function validaCampos(event) {
+
+      event.preventDefault();
+
+      const email = document.getElementById('email')
+      const senha = document.getElementById('password')
+
+      if (email.value === '' || senha.value === '') {
+        document.getElementById('erro').innerText = 'Por favor, preencha todos os campos.'
+      }
+
+      console.log("email: " + email.value, "senha:" + senha.value)
+    }
+
+    function limparErro() {
+      document.getElementById('erro').innerText = ''
+    }
+  </script>
+
+
+</body>
+
+</html>
