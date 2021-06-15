@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+
+  <title>Daily Scrum Order</title>
+</head>
+
+<body class="bg-light">
+
+  <script>
+    function getBusinessDateCount(startDate, endDate) {
+      var elapsed, daysBeforeFirstSaturday, daysAfterLastSunday;
+      var ifThen = function (a, b, c) {
+        return a == b ? c : a;
+      };
+
+      elapsed = endDate - startDate;
+      elapsed /= 86400000;
+
+      daysBeforeFirstSunday = (7 - startDate.getDay()) % 7;
+      daysAfterLastSunday = endDate.getDay();
+
+      elapsed -= (daysBeforeFirstSunday + daysAfterLastSunday);
+      elapsed = (elapsed / 7) * 5;
+      elapsed += ifThen(daysBeforeFirstSunday - 1, -1, 0) + ifThen(daysAfterLastSunday, 6, 5);
+
+      return Math.ceil(elapsed);
+    }
+
+    function arrayRotate(arr, times = 1) {
+      for (let i = 0; i < times; i++) {
+        arr.unshift(arr.pop());
+      }
+    }
+  </script>
+
+
+  <div id="main" class="container p-5">
+    <div class="card shadow">
+      <div class="card-header d-flex align-items-center justify-content-between">
+        <div>
+          <h4 class="card-title">Daily Scrum</h4>
+          <h6 class="card-subtitle mb-2 text-muted"></h6>
+        </div>
+
+        <img src="https://www.hostweb.com.br/wp-content/uploads/2016/11/cropped-cropped-cropped-footer_hw.png"
+          alt="logo" height="15">
+
+      </div>
+      <div class="card-body">
+        <ul class="list-group">
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    let initial = new Date("2021-06-15");
+    let final = new Date();
+    const result = getBusinessDateCount(initial, final);
+    let list = ["Abner", "Dhayvison", "David", "Marcos"];
+    const ulList = document.querySelector('#main ul');
+    const subtitle = document.querySelector('#main .card .card-subtitle');
+    subtitle.innerHTML = final.toLocaleDateString();
+
+    arrayRotate(list, result);
+
+    list.forEach((name, index) => {
+      const item = document.createElement("li");
+      if (index === 0) {
+        item.classList = "list-group-item active h4";
+      } else {
+        item.classList = "list-group-item";
+      }
+      const content = document.createTextNode(name);
+      item.appendChild(content);
+
+      ulList.appendChild(item);
+    })
+  </script>
+
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+    crossorigin="anonymous"></script>
+
+
+</body>
+
+</html>
