@@ -70,8 +70,7 @@
 
   </script>
 
-  <div id="main" class="container p-5" onclick="copyContent(this)" data-bs-toggle="tooltip" data-bs-placement="top"
-    title="Clique para copiar o conteúdo">
+  <div id="main" class="container p-5">
     <div class="card shadow">
       <div class="card-header d-flex align-items-center justify-content-between">
         <div>
@@ -101,18 +100,6 @@
       background-position: right;
       background-size: auto 15px;
       background-origin: content-box;
-    }
-
-    #main {
-      cursor: pointer;
-      transition: all 0.3s ease-in-out;
-      will-change: transform;
-      transform: perspective(0) translateZ(0) scale(0.99);
-      backface-visibility: hidden;
-    }
-
-    #main:hover {
-      transform: scale(1);
     }
   </style>
 
