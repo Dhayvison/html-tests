@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body style="height: 90vh; display: flex; align-items: center; justify-content: center;flex-wrap: wrap;">
+
+  <div class="box">😎</div>
+  <div class="box">😁</div>
+  <div class="box">🎶</div>
+  <div class="box">💖</div>
+  <div class="box">🐱‍🚀</div>
+
+  <style>
+    body {
+      background-color: #ddd;
+    }
+
+    .box {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background-color: #fff;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease-in-out;
+      margin: 12px;
+      font-size: xx-large;
+    }
+
+    /* Create the hidden pseudo-element */
+    /* include the shadow for the end state */
+    .box::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      z-index: 100;
+      width: 15px;
+      height: 15px;
+      border-radius: inherit;
+      transition: box-shadow 0.3s ease-in-out;
+    }
+
+    /* Fade in the pseudo-element with the bigger shadow */
+    .box:hover::after {
+      animation: splashShadow .6s;
+    }
+
+    @keyframes splashShadow {
+      0% {
+        box-shadow: none;
+
+      }
+
+      50% {
+        box-shadow:
+          0 -1.61875rem 0 -0.25rem #da3b00,
+          1.05547rem -1.00937rem 0 -0.25rem #feab43,
+          1.05547rem 0.20937rem 0 -0.25rem #02ad56,
+          0 0.81875rem 0 -0.25rem #0078d4,
+          -1.05547rem 0.20937rem 0 -0.25rem #8763b8,
+          -1.05547rem -1.00937rem 0 -0.25rem #e3008c;
+      }
+
+      100% {
+        box-shadow:
+          0 -1.61875rem 0 -0.25rem transparent,
+          1.05547rem -1.00937rem 0 -0.25rem transparent,
+          1.05547rem 0.20937rem 0 -0.25rem transparent,
+          0 0.81875rem 0 -0.25rem transparent,
+          -1.05547rem 0.20937rem 0 -0.25rem transparent,
+          -1.05547rem -1.00937rem 0 -0.25rem transparent;
+      }
+    }
+  </style>
+
+
+</body>
+
+</html>
