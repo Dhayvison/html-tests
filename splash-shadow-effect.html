@@ -51,7 +51,7 @@
 
     /* Fade in the pseudo-element with the bigger shadow */
     .box:hover::after {
-      animation: splashShadow .6s;
+      animation: splashShadow 1s;
     }
 
     @keyframes splashShadow {
@@ -60,7 +60,7 @@
 
       }
 
-      50% {
+      30% {
         box-shadow:
           0 -1.61875rem 0 -0.25rem #da3b00,
           1.05547rem -1.00937rem 0 -0.25rem #feab43,
@@ -78,6 +78,8 @@
           0 0.81875rem 0 -0.25rem transparent,
           -1.05547rem 0.20937rem 0 -0.25rem transparent,
           -1.05547rem -1.00937rem 0 -0.25rem transparent;
+        width: 0;
+        height: 0;
       }
     }
   </style>
