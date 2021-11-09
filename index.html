@@ -1,1 +1,102 @@
-<h1>Hello Github</h1>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"
+    integrity="sha512-dqw6X88iGgZlTsONxZK9ePmJEFrmHwpuMrsUChjAw1mRUhUITE5QU9pkcSox+ynfLhL15Sv2al5A0LVyDCmtUw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.css"
+    integrity="sha512-+AdxWMqfOdtwMuXK482e5OgHYzN06s97n3NTAeAdTlUvlIgCBx3SUKvMculJIedylDfVCaQFdD6HaojI4aeBUA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+  <style>
+    /* width */
+    ::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      /* box-shadow: inset 0 0 5px grey; */
+      /* background-color: var(--bb-palette-default, #000000); */
+      /* border-radius: 100px; */
+
+      /* background: rgba(0, 0, 0, 0.1); */
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: #0A2463;
+      border-radius: 8px;
+      border: 4px solid transparent;
+      background-clip: content-box;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #3E92CC;
+      border: 2px solid transparent;
+      background-clip: content-box;
+    }
+
+    body {
+      padding: 4rem;
+      overflow: overlay;
+    }
+
+    iframe {
+      border-radius: 12px;
+      margin: 4rem 0;
+    }
+  </style>
+
+  <div class="ui container">
+    <h1>HTML TESTS</h1>
+
+    <div class="ui selection animated list segment" id="sites-list">
+      <span class="ui red ribbon label">Selecione um item da lista para visualizar</span>
+    </div>
+
+    <iframe src="" frameborder="0" width="100%" height="1000px">
+    </iframe>
+
+
+  </div>
+
+  <script>
+    function changeIframeSRC(src) {
+      $('iframe').prop('src', src);
+    }
+
+    $(function () {
+      $.ajax({
+        url: 'https://api.github.com/repos/Dhayvison/html-tests/git/trees/master',
+        complete: (data) => {
+          const filesData = data.responseJSON.tree
+          filesData.forEach(file => {
+            if (file.path.endsWith('.html') && file.path !== 'index.html') {
+              $('#sites-list').append(`
+                <div class="item">
+                  <div class="content">
+                    <div class="header" onclick="changeIframeSRC('https://dhayvison.github.io/html-tests/${file.path}')">${file.path}</div>
+                  </div>
+                </div>
+              `);
+            }
+          });
+        }
+      })
+    });
+  </script>
+
+</body>
+
+</html>
