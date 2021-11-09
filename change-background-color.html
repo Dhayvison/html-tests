@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Change Background color</title>
+</head>
+
+<body>
+
+  <h1 class="change-color">This is my header</h1>
+  <h2 class="change-color">This is my header too</h2>
+
+  <label for="favcolor">Select your favorite color:</label>
+  <input type="color" id="favcolor" name="favcolor" value="#ff0000">
+
+  <script>
+    const colorPicker = document.querySelector('input[type=color]');
+    const SELECTOR = '.change-color';
+    colorPicker.oninput = (e) => {
+      document.querySelectorAll(SELECTOR).forEach((node) => {
+        node.style.backgroundColor = e.target.value
+      })
+    }
+  </script>
+
+</body>
+
+</html>
