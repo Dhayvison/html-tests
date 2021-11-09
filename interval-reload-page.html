@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interval reload page</title>
+</head>
+
+<body>
+  <style>
+    body {
+      font-family: 'Fira Code', Courier, monospace;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background: rgb(2, 0, 36);
+      background: -moz-linear-gradient(202deg, rgba(2, 0, 36, 1) 46%, rgba(175, 68, 116, 1) 100%);
+      background: -webkit-linear-gradient(202deg, rgba(2, 0, 36, 1) 46%, rgba(175, 68, 116, 1) 100%);
+      background: linear-gradient(202deg, rgba(2, 0, 36, 1) 46%, rgba(175, 68, 116, 1) 100%);
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024", endColorstr="#af4474", GradientType=1);
+      color: rgba(255, 255, 255, 0.618);
+    }
+  </style>
+
+  <h1></h1>
+
+  <script>
+    const h1 = document.querySelector('h1');
+    h1.innerText = new Date().toTimeString();
+
+    setInterval(() => {
+      document.location.reload(true);
+    }, 1000);
+  </script>
+</body>
+
+</html>
