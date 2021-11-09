@@ -63,6 +63,15 @@
 
     <div class="ui selection animated list segment" id="sites-list">
       <span class="ui red ribbon label">Selecione um item da lista para visualizar</span>
+
+      <div class="ui placeholder">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
     </div>
 
     <iframe src="" frameborder="0" width="100%" height="1000px">
@@ -80,20 +89,25 @@
       $.ajax({
         url: 'https://api.github.com/repos/Dhayvison/html-tests/git/trees/master',
         complete: (data) => {
+          $('#sites-list .ui.placeholder').remove();
           const filesData = data.responseJSON.tree
           filesData.forEach(file => {
-            if (file.path.endsWith('.html') && file.path !== 'index.html') {
-              $('#sites-list').append(`
-                <div class="item">
-                  <div class="content">
-                    <div class="header" onclick="changeIframeSRC('https://dhayvison.github.io/html-tests/${file.path}')">${file.path}</div>
+            setTimeout(() => {
+              if (file.path.endsWith('.html') && file.path !== 'index.html') {
+                $('#sites-list').append(`
+                  <div class="item">
+                    <div class="content">
+                      <div class="header" onclick="changeIframeSRC('https://dhayvison.github.io/html-tests/${file.path}')">${file.path}</div>
+                    </div>
                   </div>
-                </div>
-              `);
-            }
+                `);
+              }
+
+            }, Math.random() * 1000)
+
           });
         }
-      })
+      });
     });
   </script>
 
