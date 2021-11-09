@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Covid-19 in Brazil in less 30 days</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@3.2.1/dist/chart.min.js"
+    integrity="sha256-uVEHWRIr846/vAdLJeybWxjPNStREzOlqLMXjW/Saeo=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <style>
+
+  </style>
+
+  <canvas id="myChart"></canvas>
+  <script>
+
+    fetch('https://covid-api.mmediagroup.fr/v1/history?country=Brazil&status=confirmed')
+      .then(data => data.json())
+      .then(({ All: BrasilInfo }) => {
+        const labelsDeaths = Array();
+        const dataDeaths = Array();
+
+        for (const key in BrasilInfo.dates) {
+          if (BrasilInfo.dates[key] !== 0) {
+            labelsDeaths.unshift(key);
+            dataDeaths.unshift(BrasilInfo.dates[key]);
+          }
+        }
+
+        return { labelsDeaths, dataDeaths }
+
+      }).then(({ labelsDeaths, dataDeaths }) => {
+        labelsDeaths = labelsDeaths.slice(-30)
+        dataDeaths = dataDeaths.slice(-30)
+
+        const data = {
+          labels: labelsDeaths,
+          datasets: [{
+            label: 'Covid-19 deaths in Brazil',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: dataDeaths,
+          }]
+        };
+
+        const config = {
+          type: 'line',
+          data,
+          options: {
+            responsive: true,
+            interaction: {
+              intersect: false,
+            },
+          },
+        };
+
+        var myChart = new Chart(
+          document.getElementById('myChart'),
+          config
+        );
+      })
+
+  </script>
+
+</body>
+
+</html>
